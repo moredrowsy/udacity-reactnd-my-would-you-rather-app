@@ -6,9 +6,9 @@ import CardTab from './CardTab';
 import Question from './Question';
 import QuestionViewPoll from './QuestionViewPoll';
 
-const ASKED = 'ASKED';
-const ANSWERED = 'ANSWERED';
-const UNANSWERED = 'UNANSWERED';
+export const ASKED = 'ASKED';
+export const ANSWERED = 'ANSWERED';
+export const UNANSWERED = 'UNANSWERED';
 const tabs = [
   {
     title: 'Unanswered Questions',

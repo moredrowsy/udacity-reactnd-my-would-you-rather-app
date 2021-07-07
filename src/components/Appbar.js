@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+
 import { setAuthedUser } from '../store/actions/authedUser.action';
+import { setShowQuestionType } from '../store/actions/showQuestionType.action';
+import { UNANSWERED } from './Dashboard';
 import AppbarLink from './AppbarLink';
 
 function Appbar(props) {
   const { appbarLinks, authedUser, dispatch, history } = props;
 
   const handleSignout = () => {
-    dispatch(setAuthedUser(null));
+    dispatch(setAuthedUser(null)); // Unset user
+    dispatch(setShowQuestionType(UNANSWERED)); // Reset dashboard tabs
     history.push('/');
   };
 
