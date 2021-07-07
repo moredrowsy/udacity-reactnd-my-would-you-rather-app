@@ -2,14 +2,45 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { setShowQuestionType } from '../store/actions/showQuestionType.action';
+import CardTab from './CardTab';
 import Question from './Question';
 import QuestionViewPoll from './QuestionViewPoll';
 
+const ASKED = 'ASKED';
+const ANSWERED = 'ANSWERED';
+const UNANSWERED = 'UNANSWERED';
+const tabs = [
+  {
+    title: 'Unanswered Questions',
+    value: UNANSWERED,
+  },
+  {
+    title: 'Answered Questions',
+    value: ANSWERED,
+  },
+  {
+    title: 'Asked Questions',
+    value: ASKED,
+  },
+];
+
 function Dashboard(props) {
-  const ANSWERED = 'ANSWERED';
-  const UNANSWERED = 'UNANSWERED';
-  const { answered, unanswered, dispatch, showQuestionType } = props;
-  const showQuestions = showQuestionType === ANSWERED ? answered : unanswered;
+  const { asked, answered, unanswered, dispatch, showQuestionType } = props;
+
+  let showQuestions = [];
+  switch (showQuestionType) {
+    case UNANSWERED:
+      showQuestions = unanswered;
+      break;
+    case ANSWERED:
+      showQuestions = answered;
+      break;
+    case ASKED:
+      showQuestions = asked;
+      break;
+    default:
+      showQuestions = [];
+  }
 
   const handleChange = (answerType) =>
     dispatch(setShowQuestionType(answerType));
@@ -18,28 +49,15 @@ function Dashboard(props) {
     <div className='card'>
       <div className='card-header'>
         <ul className='nav nav-tabs card-header-tabs nav-fill'>
-          <li className='nav-item'>
-            <button
-              className={`nav-link ${
-                showQuestionType === UNANSWERED ? 'active' : ''
-              }`}
-              value={UNANSWERED}
-              onClick={(e) => handleChange(e.target.value)}
-            >
-              Unanswered Questions
-            </button>
-          </li>
-          <li className='nav-item'>
-            <button
-              className={`nav-link ${
-                showQuestionType === ANSWERED ? 'active' : ''
-              }`}
-              value={ANSWERED}
-              onClick={(e) => handleChange(e.target.value)}
-            >
-              Answered Questions
-            </button>
-          </li>
+          {tabs.map((tab) => (
+            <CardTab
+              key={tab.value}
+              title={tab.title}
+              value={tab.value}
+              currentValue={showQuestionType}
+              handleChange={handleChange}
+            />
+          ))}
         </ul>
       </div>
       <div className='card-body'>
@@ -67,6 +85,7 @@ const mapStateToProps = ({
 }) => {
   let answered = [];
   let unanswered = [];
+  let asked = [];
 
   if (authedUser && users[authedUser] && Object.keys(questions).length > 0) {
     const { answers } = users[authedUser];
@@ -78,10 +97,14 @@ const mapStateToProps = ({
         .filter((q) => !(q in answers))
         .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
     }
+    asked = users[authedUser].questions.sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp
+    );
   }
 
   return {
     authedUser,
+    asked,
     answered,
     unanswered,
     showQuestionType,

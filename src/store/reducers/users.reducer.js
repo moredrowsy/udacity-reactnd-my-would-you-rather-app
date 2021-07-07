@@ -1,4 +1,4 @@
-import { ADD_USER, RECEIVE_USERS } from '../actions/users.action';
+import { ADD_USER, RECEIVE_USERS, UPDATE_USER } from '../actions/users.action';
 
 const initialState = {};
 
@@ -9,6 +9,8 @@ export default function users(state = initialState, action) {
       else return { ...state, ...action.user };
     case RECEIVE_USERS:
       return { ...state, ...action.users };
+    case UPDATE_USER:
+      return { ...state, [action.user.id]: action.user };
     default:
       return state;
   }
