@@ -2,12 +2,16 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
+import Error from './Error';
 import Question from './Question';
 import QuestionResult from './QuestionResults';
 import QuestionAsk from './QuestionAsk';
 
 function QuestionPage(props) {
-  const { id, hasVoted } = props;
+  const { id, hasVoted, questionExists } = props;
+
+  // Check if question exists
+  if (!questionExists) return <Error text='Question does not exist'></Error>;
 
   if (hasVoted) {
     return (
@@ -24,7 +28,7 @@ function QuestionPage(props) {
   }
 }
 
-const matchStateToProps = ({ authedUser, users }, props) => {
+const matchStateToProps = ({ authedUser, users, questions }, props) => {
   const { id } = props.match.params;
 
   let hasVoted = false;
@@ -38,6 +42,7 @@ const matchStateToProps = ({ authedUser, users }, props) => {
   return {
     hasVoted,
     id,
+    questionExists: questions[id] ? true : false,
   };
 };
 

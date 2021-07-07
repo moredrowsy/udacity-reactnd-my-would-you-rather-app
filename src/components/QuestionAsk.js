@@ -1,31 +1,32 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { handleSaveQuestionAnswer } from '../store/actions/questions.action';
-
-const OPTION_ONE = 'optionOne';
-const OPTION_TWO = 'optionTwo';
+import { OPTION_ONE, OPTION_TWO } from './NewQuestion';
 
 function QuestionAsk(props) {
   const { authedUser, dispatch, question } = props;
   const { optionOne, optionTwo } = question;
   const [radio, setRadio] = useState(OPTION_ONE);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const handleChange = (value) => setRadio(value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      handleSaveQuestionAnswer({
-        authedUser: authedUser.id,
-        qid: question.id,
-        answer: radio,
-      })
-    );
+    const onError = (e) => setErrorMsg('Error. Try again.');
+
+    const voteInfo = {
+      authedUser: authedUser.id,
+      qid: question.id,
+      answer: radio,
+    };
+    dispatch(handleSaveQuestionAnswer(voteInfo, undefined, onError));
   };
 
   return (
     <>
       <h5 className='card-title'>Would you rather...</h5>
+      <div className='text-center text-danger'>{errorMsg}</div>
       <form onSubmit={handleSubmit}>
         <div className='form-check'>
           <input

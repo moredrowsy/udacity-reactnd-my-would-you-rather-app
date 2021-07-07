@@ -29,18 +29,16 @@ export function updateUser(user) {
   };
 }
 
-export const handleAddUser =
-  (info, successCallback, errorCallback) => async (dispatch) => {
-    try {
-      dispatch(showLoading());
-      try {
-        const user = await saveUser(formatUser(info));
-        successCallback(user);
-      } catch (e) {
-        errorCallback(e.message);
-      }
-      dispatch(hideLoading());
-    } catch (e) {
-      console.log('Fail handleAddUser()', e);
-    }
-  };
+export const handleAddUser = (info, onSuccess, onError) => async (dispatch) => {
+  dispatch(showLoading());
+
+  try {
+    const user = await saveUser(formatUser(info));
+    if (onSuccess) onSuccess(user);
+  } catch (e) {
+    console.log('Fail handleAddUser()', e);
+    if (onError) onError(e.message);
+  }
+
+  dispatch(hideLoading());
+};

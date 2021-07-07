@@ -30,14 +30,34 @@ export function updateQuestion(question) {
 }
 
 // ASYNC ACTION CREATORS
-export const handleAddQuestion = () => (dispatch, getState) => {};
+export const handleAddQuestion =
+  ({ optionOneText, optionTwoText, author }, onSuccess, onError) =>
+  async (dispatch) => {
+    dispatch(showLoading());
+
+    try {
+      const question = await saveQuestion({
+        optionOneText,
+        optionTwoText,
+        author,
+      });
+      dispatch(addQuestion(question));
+
+      if (onSuccess) onSuccess(question.id);
+    } catch (e) {
+      console.log('Fail handleSaveQuestionAnswer()', e);
+      if (onError) onError(e.message);
+    }
+
+    dispatch(hideLoading());
+  };
 
 export const handleSaveQuestionAnswer =
-  ({ authedUser, qid, answer }) =>
+  ({ authedUser, qid, answer }, onSuccess, onError) =>
   async (dispatch, getState) => {
+    dispatch(showLoading());
+
     try {
-      dispatch(showLoading());
-      console.log('info', authedUser, qid, answer);
       await saveQuestionAnswer({ authedUser, qid, answer });
 
       // saveQuestionAnswer does not return updated users or questions
@@ -63,13 +83,14 @@ export const handleSaveQuestionAnswer =
         },
       };
 
-      console.log('updateUser', updateUser);
-      console.log('updatedQuestion', updatedQuestion);
       dispatch(updateUser(updatedUser));
       dispatch(updateQuestion(updatedQuestion));
 
-      dispatch(hideLoading());
+      if (onSuccess) onSuccess();
     } catch (e) {
       console.log('Fail handleSaveQuestionAnswer()', e);
+      if (onError) onError(e.message);
     }
+
+    dispatch(hideLoading());
   };

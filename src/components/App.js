@@ -53,7 +53,7 @@ const authedRoutes = (
       <QuestionPage />
     </Route>
     <Route>
-      <Error />
+      <Error title='404' text='Page does not exist' />
     </Route>
   </Switch>
 );
