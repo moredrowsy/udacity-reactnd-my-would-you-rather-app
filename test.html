@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* FLEXBOX RELATED */
+    .grid {
+      display: flex;
+      justify-content: space-between;
+      flex-flow: row wrap;
+    }
+
+    .block {
+      flex: 0 24%;
+      display: flex;
+    }
+
+    .container {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: flex-start;
+    }
+
+    .title {
+      flex: 0 100%;
+    }
+
+    .desc {
+      flex: 0 100%;
+    }
+
+    .button {
+      flex: 0 100%;
+      align-self: flex-end;
+    }
+
+    /* NO FLEXBOX RELATED */
+    .block {
+      background-color: #ccc;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    .desc {
+      background-color: grey;
+      padding: 0.5rem;
+    }
+
+    .button {
+      padding: 0.5rem;
+      color: blue;
+      text-align: center;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="grid">
+    <div class="block">
+      <div class="container">
+        <div class="title">Title 2</div>
+        <div class="desc">Description Description Description Description Description Description Description
+          Description</div>
+        <div class="button">Button</div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
