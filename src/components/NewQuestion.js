@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { handleAddQuestion } from '../store/actions/questions.action';
+import Title from './Title';
 
 export const OPTION_ONE = 'optionOne';
 export const OPTION_TWO = 'optionTwo';
@@ -32,7 +33,7 @@ function NewQuestion(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 class='text-center'>Ask a new question!</h2>
+      <Title>Ask a new question!</Title>
       <div className='text-center text-danger'>{errorMsg}</div>
       <h5 className='card-title'>Would you rather...</h5>
       <div className='mb-3'>

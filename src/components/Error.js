@@ -1,12 +1,13 @@
 import React from 'react';
+import Title from './Title';
 
 export default function Error(props) {
   const { title, text } = props;
 
   return (
     <>
-      <h2 class='text-center'>Error{title && ` ${title}`}</h2>
-      <div class='text-center'>{text}</div>
+      <Title>Error{title && ` ${title}`}</Title>
+      <div className='text-center'>{text}</div>
     </>
   );
 }

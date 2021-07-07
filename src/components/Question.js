@@ -15,7 +15,7 @@ function Question(props) {
       <div className='card-header fw-bold'>{name} asks</div>
       <div className='row g-0'>
         <div className='col-md-4 m-auto text-center'>
-          <img src={avatarURL} className='img-fluid rounded-start' alt='User' />
+          <img src={avatarURL} className='img-fluid rounded-start' alt={name} />
         </div>
         <div className='col-md-8'>
           <div className='card-body'>
