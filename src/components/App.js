@@ -69,8 +69,10 @@ function App(props) {
     <>
       <Appbar appbarLinks={appbarLinks} />
       <LoadingBar />
-      <div className='container mt-3 mx-auto' style={{ maxWidth: '640px' }}>
-        {authedUser ? (!loading ? authedRoutes : null) : nonAuthedRoutes}
+      <div id='app'>
+        <div className='container mt-3 mx-auto' style={{ maxWidth: '640px' }}>
+          {authedUser ? (!loading ? authedRoutes : null) : nonAuthedRoutes}
+        </div>
       </div>
     </>
   );

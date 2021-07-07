@@ -1,13 +1,27 @@
+/*
+  See this link for how to overflow only app div and not navbar
+  https://stackoverflow.com/questions/68293303/how-do-i-make-scrollbar-only-at-div-content-and-not-at-entire-body/
+*/
+/* Html and body @ height 100% will not overflow body */
+html,
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+/* 
+  Make root div a flex container sin colum direction so it aligns content
+  to parent height
+*/
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/*
+  Set app div with overflow auto will only overflow this element.
+  Element before app will not overflow.
+ */
+#app {
+  overflow: auto;
 }
