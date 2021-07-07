@@ -4,4 +4,4 @@ export function formatDate(timestamp) {
   return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString();
 }
 
-export { formatQuestion } from './_DATA.js';
+export { formatQuestion, formatUser } from './_DATA.js';

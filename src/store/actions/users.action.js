@@ -1,4 +1,5 @@
 import { saveUser } from '../../utils/db/api';
+import { formatUser } from '../../utils/db/helpers';
 import { showLoading, hideLoading } from 'react-redux-loading';
 
 // ACTIONS
@@ -25,7 +26,7 @@ export const handleAddUser =
     try {
       dispatch(showLoading());
       try {
-        const user = await saveUser(info);
+        const user = await saveUser(formatUser(info));
         successCallback(user);
       } catch (e) {
         errorCallback(e.message);

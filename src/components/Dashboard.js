@@ -43,11 +43,17 @@ function Dashboard(props) {
         </ul>
       </div>
       <div className='card-body'>
-        {showQuestions.map((question) => (
-          <Question key={question} id={question}>
-            <QuestionViewPoll />
-          </Question>
-        ))}
+        {showQuestions.length > 0 ? (
+          showQuestions.map((question) => (
+            <Question key={question} id={question}>
+              <QuestionViewPoll />
+            </Question>
+          ))
+        ) : (
+          <div className='text-center'>
+            There are no {showQuestionType.toLowerCase()} questions.
+          </div>
+        )}
       </div>
     </div>
   );
