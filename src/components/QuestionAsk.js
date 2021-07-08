@@ -24,7 +24,13 @@ function QuestionAsk(props) {
   };
 
   return (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+      }}
+    >
       <h5 className='card-title'>Would you rather...</h5>
       <div className='text-center text-danger'>{errorMsg}</div>
       <form onSubmit={handleSubmit}>
@@ -56,13 +62,20 @@ function QuestionAsk(props) {
             {optionTwo.text}
           </label>
         </div>
-        <div className='d-grid gap-2'>
-          <button className='btn btn-outline-primary' type='submit'>
-            Submit
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <button className='btn btn-outline-primary w-100' type='submit'>
+            Vote
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

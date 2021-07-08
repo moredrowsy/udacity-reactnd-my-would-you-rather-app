@@ -18,7 +18,7 @@ function Question(props) {
           <img src={avatarURL} className='img-fluid rounded-start' alt={name} />
         </div>
         <div className='col-md-8'>
-          <div className='card-body'>
+          <div className='card-body h-100'>
             {React.cloneElement(children, { ...props })}
           </div>
         </div>

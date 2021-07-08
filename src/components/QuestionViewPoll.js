@@ -16,7 +16,14 @@ function QuestionViewPoll(props) {
   };
 
   return (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        justifyContent: 'space-between',
+      }}
+    >
       <h5 className='card-title'>Would you rather...</h5>
       <p className='card-text'>
         {truncateText(optionOne.text, 55)}
@@ -34,7 +41,7 @@ function QuestionViewPoll(props) {
           View Poll
         </button>
       </div>
-    </>
+    </div>
   );
 }
 

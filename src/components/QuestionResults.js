@@ -37,7 +37,7 @@ function QuestionResults(props) {
 
   return (
     <>
-      <h5 className='card-title'>Result</h5>
+      <h5 className='card-title text-center'>Result</h5>
       <QuestionResult
         count={counts['optionOne']}
         text={optionOne.text}

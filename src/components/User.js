@@ -16,13 +16,20 @@ function User(props) {
           <img src={avatarURL} className='img-fluid rounded-start' alt={name} />
         </div>
         <div className='col-md-8'>
-          <div className='card-body'>
-            <h5 className='card-title'>{name}</h5>
-            <p className='card-text'>Answered questions: {answerCount}</p>
-            <hr />
-            <p className='card-text'>Created questions: {questionCount}</p>
-            <hr />
-            <p className='card-text'>Score: {totalCount}</p>
+          <div className='card-body h-100'>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                justifyContent: 'space-between',
+              }}
+            >
+              <h5 className='card-title'>{name}</h5>
+              <p className='card-text'>Answered questions: {answerCount}</p>
+              <p className='card-text'>Created questions: {questionCount}</p>
+              <p className='card-text'>Score: {totalCount}</p>
+            </div>
           </div>
         </div>
       </div>

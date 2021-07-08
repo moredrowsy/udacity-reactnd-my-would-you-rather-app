@@ -6,9 +6,11 @@ export default function QuestionResult(props) {
 
   return (
     <div className='card' style={isVoted ? votedStyle : {}}>
-      {isVoted && <div className='card-header text-center'>{'Your vote'}</div>}
+      {isVoted && (
+        <div className='card-header text-center fw-bold'>Your vote</div>
+      )}
       <div className='card-body'>
-        <h5 className='card-title'>{text}</h5>
+        <p className='card-title'>{text}</p>
         <div className='progress' style={{ height: '20px' }}>
           <div
             className='progress-bar'
