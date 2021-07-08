@@ -10,8 +10,8 @@ function LeaderBoard(props) {
   return (
     <div>
       <Title>Leader Board</Title>
-      {sortedUsers.map((user) => (
-        <User key={user.id} {...user} />
+      {sortedUsers.map((user, index) => (
+        <User key={user.id} {...user} index={index} />
       ))}
     </div>
   );
@@ -24,17 +24,17 @@ const mapStateToProps = ({ users }) => {
     const { answers } = users[id];
     const answerCount = Object.keys(answers).length;
     const questionCount = users[id].questions.length;
-    const totalCount = answerCount + questionCount;
+    const scoreCount = answerCount + questionCount;
 
     userList.push({
       id,
       answerCount,
       questionCount,
-      totalCount,
+      scoreCount,
     });
   }
 
-  const sortedUsers = userList.sort((a, b) => b.totalCount - a.totalCount);
+  const sortedUsers = userList.sort((a, b) => b.scoreCount - a.scoreCount);
 
   return {
     sortedUsers,

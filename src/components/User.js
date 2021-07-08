@@ -3,13 +3,34 @@ import { connect } from 'react-redux';
 import AvatarPlaceholder from './AvatarPlaceholder';
 
 function User(props) {
-  const { user, answerCount, questionCount, totalCount } = props;
+  const { user, answerCount, questionCount, scoreCount, index } = props;
   const [hasImgError, setHasImgError] = useState(false);
 
   // Check if user exists
   if (!user) return null;
 
   const { name, avatarURL } = user;
+
+  // Score color based on index position for first place, second, third, etc
+  let scoreCountStyle = {};
+  switch (index) {
+    case 0:
+      scoreCountStyle.backgroundColor = 'gold';
+      scoreCountStyle.borderColor = 'goldenrod';
+      scoreCountStyle.color = 'darkgoldenrod';
+      break;
+    case 1:
+      scoreCountStyle.backgroundColor = 'silver';
+      scoreCountStyle.borderColor = 'gray';
+      scoreCountStyle.color = 'gray';
+      break;
+    case 2:
+      scoreCountStyle.backgroundColor = 'sandybrown';
+      scoreCountStyle.borderColor = 'peru';
+      scoreCountStyle.color = 'sienna';
+      break;
+    default:
+  }
 
   const handleError = () => setHasImgError(true);
 
@@ -30,20 +51,11 @@ function User(props) {
         </div>
         <div className='col-md-8'>
           <div className='card-body h-100'>
-            <div
-              className='user-leaderboard-container'
-              style={{ height: '100%' }}
-            >
+            <div className='user-leaderboard-container h-100'>
               <div className='user-leaderboard-name text-center'>{name}</div>
               <div className='user-leaderboard-score text-center'>Score</div>
-              <div
-                className='user-leaderboard-counts'
-                style={{ height: '100%' }}
-              >
-                <div
-                  className='user-counts-container'
-                  style={{ height: '100%' }}
-                >
+              <div className='user-leaderboard-counts h-100'>
+                <div className='user-counts-container h-100'>
                   <div className='user-counts-answers-label'>
                     Answered questions
                   </div>
@@ -57,8 +69,8 @@ function User(props) {
                 </div>
               </div>
               <div className='user-leaderboard-total text-center'>
-                <div className='number-circle' style={{ margin: '10px' }}>
-                  {totalCount}
+                <div className='number-circle m-2' style={scoreCountStyle}>
+                  {scoreCount}
                 </div>
               </div>
             </div>
