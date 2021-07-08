@@ -9,8 +9,7 @@ body {
 }
 
 /* 
-  Make root div a flex container sin colum direction so it aligns content
-  to parent height
+  Set root div as flex container in colum dir so it aligns to parent height
 */
 #root {
   display: flex;
@@ -24,4 +23,119 @@ body {
  */
 #app {
   overflow: auto;
+}
+
+/* Leaderboard style for each user card content */
+.user-leaderboard-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.5fr 1.5fr;
+  gap: 0px 20px;
+  grid-template-areas:
+    'name score'
+    'counts total';
+  align-items: center;
+  font-weight: bold;
+}
+
+.user-leaderboard-name {
+  grid-area: name;
+
+  font-size: 20px;
+}
+
+.user-leaderboard-score {
+  grid-area: score;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid lightgray;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-size: 20px;
+  background-color: #f8f8f8;
+}
+
+.user-leaderboard-counts {
+  grid-area: counts;
+}
+
+.user-leaderboard-total {
+  grid-area: total;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-top: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 50px;
+}
+
+/* Leaderboard style for user's answers and questions counts */
+.user-counts-container {
+  display: grid;
+  grid-template-columns: 1.75fr 0.25fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    'answers-label answers-val'
+    'questions-label questions-val';
+  align-items: center;
+  color: gray;
+}
+
+.user-counts-answers-label {
+  grid-area: answers-label;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-counts-answers-val {
+  grid-area: answers-val;
+  text-align: right;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-counts-questions-label {
+  grid-area: questions-label;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid lightgray;
+}
+
+.user-counts-questions-val {
+  grid-area: questions-val;
+  text-align: right;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid lightgray;
+}
+
+.number-circle {
+  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  padding: 0px;
+
+  background: #fff;
+  border: 2px solid #666;
+  color: #666;
+  text-align: center;
+
+  font: 64px Arial, sans-serif;
 }

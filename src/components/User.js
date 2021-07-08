@@ -18,17 +18,36 @@ function User(props) {
         <div className='col-md-8'>
           <div className='card-body h-100'>
             <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                height: '100%',
-                justifyContent: 'space-between',
-              }}
+              className='user-leaderboard-container'
+              style={{ height: '100%' }}
             >
-              <h5 className='card-title'>{name}</h5>
-              <p className='card-text'>Answered questions: {answerCount}</p>
-              <p className='card-text'>Created questions: {questionCount}</p>
-              <p className='card-text'>Score: {totalCount}</p>
+              <div className='user-leaderboard-name text-center'>{name}</div>
+              <div className='user-leaderboard-score text-center'>Score</div>
+              <div
+                className='user-leaderboard-counts'
+                style={{ height: '100%' }}
+              >
+                <div
+                  className='user-counts-container'
+                  style={{ height: '100%' }}
+                >
+                  <div className='user-counts-answers-label'>
+                    Answered questions
+                  </div>
+                  <div className='user-counts-answers-val'>{answerCount}</div>
+                  <div className='user-counts-questions-label'>
+                    Created Questions
+                  </div>
+                  <div className='user-counts-questions-val'>
+                    {questionCount}
+                  </div>
+                </div>
+              </div>
+              <div className='user-leaderboard-total text-center'>
+                <div className='number-circle' style={{ margin: '10px' }}>
+                  {totalCount}
+                </div>
+              </div>
             </div>
           </div>
         </div>
