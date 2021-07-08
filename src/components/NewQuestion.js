@@ -12,8 +12,8 @@ export const OPTION_TWO = 'optionTwo';
 
 function NewQuestion(props) {
   const { authedUser, dispatch, history } = props;
-  const [optionOne, setOptionOne] = useState();
-  const [optionTwo, setOptionTwo] = useState();
+  const [optionOne, setOptionOne] = useState('');
+  const [optionTwo, setOptionTwo] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
 
   const handleSubmit = (e) => {
