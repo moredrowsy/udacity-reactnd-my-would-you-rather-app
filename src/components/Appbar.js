@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { setAuthedUser } from '../store/actions/authedUser.action';
 import { setShowQuestionType } from '../store/actions/showQuestionType.action';
-import { UNANSWERED } from './Dashboard';
+import { RESET_DASHBOARD } from './Dashboard';
 import AppbarLink from './AppbarLink';
 
 function Appbar(props) {
@@ -12,7 +12,7 @@ function Appbar(props) {
 
   const handleSignout = () => {
     dispatch(setAuthedUser(null)); // Unset user
-    dispatch(setShowQuestionType(UNANSWERED)); // Reset dashboard tabs
+    dispatch(setShowQuestionType(RESET_DASHBOARD)); // Reset dashboard tabs
     history.push('/');
   };
 

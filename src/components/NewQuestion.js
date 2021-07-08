@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { handleAddQuestion } from '../store/actions/questions.action';
+import { setShowQuestionType } from '../store/actions/showQuestionType.action';
+import { RESET_DASHBOARD } from './Dashboard';
 import Title from './Title';
 
 export const OPTION_ONE = 'optionOne';
@@ -16,7 +18,10 @@ function NewQuestion(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const onSuccess = (qId) => history.push(`/questions/${qId}`);
+    const onSuccess = (qId) => {
+      dispatch(setShowQuestionType(RESET_DASHBOARD));
+      history.push(`/`);
+    };
     const onError = (e) => setErrorMsg('Error. Try again.');
 
     if (authedUser) {

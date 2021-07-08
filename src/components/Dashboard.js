@@ -9,6 +9,8 @@ import QuestionViewPoll from './QuestionViewPoll';
 export const ASKED = 'ASKED';
 export const ANSWERED = 'ANSWERED';
 export const UNANSWERED = 'UNANSWERED';
+export const RESET_DASHBOARD = UNANSWERED;
+
 const tabs = [
   {
     title: 'Unanswered Questions',
