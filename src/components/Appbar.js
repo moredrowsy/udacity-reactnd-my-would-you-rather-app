@@ -67,7 +67,7 @@ function Appbar(props) {
                       type='button'
                       onClick={handleSignout}
                     >
-                      Signout
+                      Sign out
                     </button>
                   </li>
                 </ul>
