@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import QuestionResult from './QuestionResult';
 
-function getPercentage(decimal) {
-  return Math.round(decimal * 100);
-}
+import { OPTION_ONE, OPTION_TWO } from './NewQuestion';
+import QuestionResult from './QuestionResult';
 
 function pollResults(questionId, users) {
   const count = {
@@ -24,8 +22,9 @@ function pollResults(questionId, users) {
   const total = count.optionOne + count.optionTwo;
 
   return {
-    optionOne: getPercentage(count.optionOne / total),
-    optionTwo: getPercentage(count.optionTwo / total),
+    optionOne: count.optionOne,
+    optionTwo: count.optionTwo,
+    total,
   };
 }
 
@@ -39,15 +38,17 @@ function QuestionResults(props) {
     <>
       <h5 className='card-title text-center'>Result</h5>
       <QuestionResult
-        count={counts['optionOne']}
+        count={counts[OPTION_ONE]}
+        total={counts.total}
         text={optionOne.text}
-        isVoted={authedUser.answers[id] === 'optionOne'}
+        isVoted={authedUser.answers[id] === OPTION_ONE}
       />
       <div className='mb-3'></div>
       <QuestionResult
-        count={counts['optionTwo']}
+        count={counts[OPTION_TWO]}
+        total={counts.total}
         text={optionTwo.text}
-        isVoted={authedUser.answers[id] === 'optionTwo'}
+        isVoted={authedUser.answers[id] === OPTION_TWO}
       />
     </>
   );
