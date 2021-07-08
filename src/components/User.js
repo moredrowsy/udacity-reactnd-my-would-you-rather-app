@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import AvatarPlaceholder from './AvatarPlaceholder';
 
 function User(props) {
   const { user, answerCount, questionCount, totalCount } = props;
+  const [hasImgError, setHasImgError] = useState(false);
 
   // Check if user exists
   if (!user) return null;
 
   const { name, avatarURL } = user;
 
+  const handleError = () => setHasImgError(true);
+
   return (
     <div className='card mb-3 mx-auto' style={{ maxWidth: '100%' }}>
       <div className='row g-0'>
         <div className='col-md-4 m-auto text-center'>
-          <img src={avatarURL} className='img-fluid rounded-start' alt={name} />
+          {!hasImgError ? (
+            <img
+              src={avatarURL}
+              className='img-fluid rounded-start'
+              alt={name}
+              onError={handleError}
+            />
+          ) : (
+            <AvatarPlaceholder />
+          )}
         </div>
         <div className='col-md-8'>
           <div className='card-body h-100'>
