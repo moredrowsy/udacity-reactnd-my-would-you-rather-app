@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Error from './Error';
 import Question from './Question';
 import QuestionResult from './QuestionResults';
-import QuestionAsk from './QuestionAsk';
+import QuestionVote from './QuestionVote';
 
 function QuestionPage(props) {
   const { id, hasVoted, questionExists } = props;
@@ -22,7 +22,7 @@ function QuestionPage(props) {
   } else {
     return (
       <Question id={id}>
-        <QuestionAsk />
+        <QuestionVote />
       </Question>
     );
   }

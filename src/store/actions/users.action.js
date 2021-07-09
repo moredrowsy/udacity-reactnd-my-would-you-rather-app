@@ -4,6 +4,8 @@ import { showLoading, hideLoading } from 'react-redux-loading';
 
 // ACTIONS
 export const ADD_USER = 'ADD_USER';
+export const ADD_USER_ANSWER = 'ADD_USER_ANSWER';
+export const ADD_USER_QUESTION = 'ADD_USER_QUESTION';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const UPDATE_USER = 'UPDATE_USER';
 
@@ -12,6 +14,23 @@ export function addUser(user) {
   return {
     type: ADD_USER,
     user,
+  };
+}
+
+export function addUserAnswer(uid, qid, answer) {
+  return {
+    type: ADD_USER_ANSWER,
+    uid,
+    qid,
+    answer,
+  };
+}
+
+export function addUserQuestion(uid, qid) {
+  return {
+    type: ADD_USER_QUESTION,
+    uid,
+    qid,
   };
 }
 
