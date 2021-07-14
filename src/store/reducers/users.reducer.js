@@ -14,7 +14,6 @@ export default function users(state = initialState, action) {
       if (action.user in state) return state;
       else return { ...state, ...action.user };
     case ADD_USER_ANSWER:
-      console.log('add user answer', action);
       return {
         ...state,
         [action.uid]: {
