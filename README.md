@@ -4,6 +4,10 @@
 
 A question and polling application where users can ask/create questions and vote on questions. It also shows poll results for each questions.
 
+## Showcase
+
+https://user-images.githubusercontent.com/33333969/127723901-c6b0317b-bfc8-414f-bdb6-d03871b3a1ab.mp4
+
 ## Install
 
 ```bash
