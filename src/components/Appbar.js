@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -9,6 +9,13 @@ import AppbarLink from './AppbarLink';
 
 function Appbar(props) {
   const { appbarLinks, authedUser, dispatch, history } = props;
+  const [appBarHeaderWidth, setAppBarHeaderWidth] = useState(171);
+  const appBarHeader = useRef(null);
+
+  useEffect(() => {
+    if (appBarHeader && appBarHeader.current)
+      setAppBarHeaderWidth(appBarHeader.current.offsetWidth);
+  }, [setAppBarHeaderWidth]);
 
   const handleSignout = () => {
     dispatch(setAuthedUser(null)); // Unset user
@@ -22,7 +29,7 @@ function Appbar(props) {
       aria-label='Fourth navbar example'
     >
       <div className='container-fluid'>
-        <Link className='navbar-brand' to='/'>
+        <Link className='navbar-brand' to='/' ref={appBarHeader}>
           Would You Rather?
         </Link>
         <button
@@ -49,31 +56,39 @@ function Appbar(props) {
               </li>
             ))}
           </ul>
-          {authedUser && (
-            <ul className='navbar-nav'>
-              <li className='nav-item dropdown'>
-                <div
-                  className='nav-path dropdown-toggle'
-                  style={{ userSelect: 'none' }}
-                  data-bs-toggle='dropdown'
-                  aria-expanded='false'
-                >
-                  {authedUser.name}
-                </div>
-                <ul className='dropdown-menu dropdown-menu-end'>
-                  <li>
-                    <button
-                      className='dropdown-item'
-                      type='button'
-                      onClick={handleSignout}
-                    >
-                      Sign out
-                    </button>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          )}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              minWidth: appBarHeaderWidth,
+            }}
+          >
+            {authedUser && (
+              <ul className='navbar-nav'>
+                <li className='nav-item dropdown'>
+                  <div
+                    className='nav-path dropdown-toggle'
+                    style={{ userSelect: 'none' }}
+                    data-bs-toggle='dropdown'
+                    aria-expanded='false'
+                  >
+                    {authedUser.name}
+                  </div>
+                  <ul className='dropdown-menu dropdown-menu-end'>
+                    <li>
+                      <button
+                        className='dropdown-item'
+                        type='button'
+                        onClick={handleSignout}
+                      >
+                        Sign out
+                      </button>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </nav>
