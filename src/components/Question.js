@@ -33,7 +33,7 @@ function Question(props) {
         </div>
         <div className='col-md-8'>
           <div className='card-body h-100'>
-            {React.cloneElement(children, { ...props })}
+            {children && React.cloneElement(children, { ...props })}
           </div>
         </div>
       </div>
