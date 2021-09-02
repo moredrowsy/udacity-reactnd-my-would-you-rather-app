@@ -11,19 +11,16 @@ function pollResults(questionId, users) {
   };
 
   for (const userId in users) {
-    if (users[userId]) {
-      const { answers } = users[userId];
+    const { answers } = users[userId];
 
-      if (answers && questionId in answers) {
-        count[answers[questionId]]++;
-      }
+    if (answers && questionId in answers) {
+      count[answers[questionId]]++;
     }
   }
   const total = count.optionOne + count.optionTwo;
 
   return {
-    optionOne: count.optionOne,
-    optionTwo: count.optionTwo,
+    ...count,
     total,
   };
 }

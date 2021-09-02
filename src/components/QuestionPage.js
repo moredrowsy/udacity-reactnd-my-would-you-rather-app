@@ -13,19 +13,11 @@ function QuestionPage(props) {
   // Check if question exists
   if (!questionExists) return <Error text='Question does not exist'></Error>;
 
-  if (hasVoted) {
-    return (
-      <Question id={id}>
-        <QuestionResult />
-      </Question>
-    );
-  } else {
-    return (
-      <Question id={id}>
-        <QuestionVote />
-      </Question>
-    );
-  }
+  return (
+    <Question id={id}>
+      {hasVoted ? <QuestionResult /> : <QuestionVote />}
+    </Question>
+  );
 }
 
 const matchStateToProps = ({ authedUser, users, questions }, props) => {
