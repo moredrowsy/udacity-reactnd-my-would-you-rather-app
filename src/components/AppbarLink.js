@@ -5,18 +5,12 @@ function AppbarLink(props) {
   const { name, exact, path } = props;
   const routeMatch = useRouteMatch({
     path,
+    exact,
   });
-
-  let isActive = false;
-  if (routeMatch) {
-    if (!exact || (exact && routeMatch.isExact)) {
-      isActive = true;
-    }
-  }
 
   return (
     <Link
-      className={`nav-link ${isActive ? 'active' : ''}`}
+      className={`nav-link ${routeMatch && 'active'}`}
       aria-current='page'
       to={path}
     >
