@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { handleSaveQuestionAnswer } from '../store/actions/questions.action';
 import { OPTION_ONE, OPTION_TWO } from './NewQuestion';
 
+const options = [OPTION_ONE, OPTION_TWO];
+
 function QuestionVote(props) {
   const { authedUser, dispatch, question } = props;
-  const { optionOne, optionTwo } = question;
   const [radio, setRadio] = useState(OPTION_ONE);
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -42,34 +43,22 @@ function QuestionVote(props) {
         }}
       >
         <div className='text-center text-danger'>{errorMsg}</div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='radio'
-            name={OPTION_ONE}
-            id={OPTION_ONE}
-            value={OPTION_ONE}
-            checked={radio === OPTION_ONE}
-            onChange={(e) => handleChange(e.target.value)}
-          />
-          <label className='form-check-label card-text' htmlFor={OPTION_ONE}>
-            {optionOne.text}
-          </label>
-        </div>
-        <div className='form-check'>
-          <input
-            className='form-check-input'
-            type='radio'
-            name={OPTION_TWO}
-            id={OPTION_TWO}
-            value={OPTION_TWO}
-            checked={radio === OPTION_TWO}
-            onChange={(e) => handleChange(e.target.value)}
-          />
-          <label className='form-check-label card-text' htmlFor={OPTION_TWO}>
-            {optionTwo.text}
-          </label>
-        </div>
+        {options.map((option) => (
+          <div className='form-check' key={option}>
+            <input
+              className='form-check-input'
+              type='radio'
+              name={option}
+              id={option}
+              value={option}
+              checked={radio === option}
+              onChange={(e) => handleChange(e.target.value)}
+            />
+            <label className='form-check-label card-text' htmlFor={option}>
+              {question[option].text}
+            </label>
+          </div>
+        ))}
         <div>
           <button className='btn btn-outline-primary w-100' type='submit'>
             Vote
