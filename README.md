@@ -20,6 +20,10 @@ npm install
 npm start
 ```
 
+## Udacity Review
+
+This project is an original work by Thuan Tang for Udacity review on Nov. 17, 2021.
+
 ## Rubric
 
 ### Application Setup
